@@ -1,5 +1,5 @@
-# Production stack untuk VPS: Postgres + app Next.js + Caddy (HTTPS otomatis).
-# Butuh file .env berisi POSTGRES_PASSWORD dan DOMAIN.
+# Stack produksi untuk VPS: Postgres + game (image dari GHCR) + Caddy (HTTPS otomatis).
+# Butuh file .env berisi APP_IMAGE, POSTGRES_PASSWORD, dan DOMAIN (lihat .env.production.example).
 services:
   db:
     image: postgres:17-alpine
@@ -17,7 +17,8 @@ services:
       retries: 10
 
   app:
-    build: .
+    # Image hasil GitHub Actions, mis. ghcr.io/namakamu/windi-sweet-bakery:latest
+    image: ${APP_IMAGE:?isi APP_IMAGE di .env}
     restart: unless-stopped
     environment:
       DATABASE_URL: postgresql://windi:${POSTGRES_PASSWORD}@db:5432/windi
@@ -33,6 +34,7 @@ services:
     ports:
       - "80:80"
       - "443:443"
+      - "443:443/udp"
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
       - caddy_data:/data

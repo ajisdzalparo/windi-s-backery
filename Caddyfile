@@ -1,4 +1,9 @@
 {$DOMAIN} {
 	encode zstd gzip
+
+	# Service worker jangan di-cache browser supaya update game cepat terpasang.
+	@sw path /sw.js
+	header @sw Cache-Control "no-cache"
+
 	reverse_proxy app:3000
 }

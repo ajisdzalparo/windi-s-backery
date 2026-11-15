@@ -32,7 +32,7 @@ COPY --from=build /app/.next/static ./.next/static
 COPY --from=build /app/public ./public
 # Prisma client (dengan engine Linux) + skema + data surat untuk seed
 COPY --from=build /app/node_modules/.prisma ./node_modules/.prisma
-COPY --from=build /app/node_modules/@prisma ./node_modules/@prisma
+COPY --from=build /app/node_modules/@prisma/client ./node_modules/@prisma/client
 COPY --from=build /app/prisma ./prisma
 COPY --from=prisma-cli /prisma-cli/node_modules /prisma-cli/node_modules
 
