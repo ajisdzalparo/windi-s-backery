@@ -1,0 +1,75 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Profil tunggal (Windi). Kolom Json menyimpan daftar kecil yang tidak perlu di-query.
+model User {
+  id              String      @id @default(uuid())
+  name            String      @default("Windi")
+  coins           Int         @default(100)
+  inGameDay       Int         @default(1)
+  minutes         Int         @default(360) // jam dalam game, menit sejak 00:00 (360 = 06:00)
+  energy          Int         @default(100)
+  outfitId        String      @default("apron_06")
+  posX            Float       @default(0)
+  posZ            Float       @default(-1)
+  shopOpen        Boolean     @default(false)
+  caseSlots       Int         @default(3)
+  caseItems       Json        @default("[]") // itemId produk di etalase
+  ownedOutfits    Json        @default("[\"casual_01\", \"apron_06\"]")
+  decorations     Json        @default("[]")
+  unlockedRecipes Json        @default("[]") // resep rahasia dari Ajis
+  foraged         Json        @default("[]") // titik foraging yang sudah diambil pada inGameDay ini
+  ajisTalkDay     Int         @default(0)
+  quests          Json        @default("{}") // progres misi cerita & harian (lihat lib/quests.ts)
+  upgrades        Json        @default("[]") // lahan, bangunan, alat yang sudah dibeli
+  animals         Json        @default("[]") // hewan ternak (lihat type Animal)
+  pets            Json        @default("[]")
+  activePet       String?
+  petDay          Int         @default(0)
+  tutorialDone    Boolean     @default(false)
+  updatedAt       DateTime    @updatedAt
+  createdAt       DateTime    @default(now())
+  inventories     Inventory[]
+  farmPlots       FarmPlot[]
+}
+
+model Inventory {
+  id       String @id @default(uuid())
+  userId   String
+  user     User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  itemId   String
+  quantity Int    @default(0)
+
+  @@unique([userId, itemId])
+}
+
+model FarmPlot {
+  id          String  @id @default(uuid())
+  userId      String
+  user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  plotIndex   Int
+  seedId      String?
+  watered     Boolean @default(false)
+  growthStage Int     @default(0)
+
+  @@unique([userId, plotIndex])
+}
+
+// Surat harian yang tersembunyi di kota. Muncul mulai tanggal server nyata `availableOn` (WIB).
+model Letter {
+  id          String    @id
+  title       String
+  body        String    @db.Text
+  photoUrl    String?
+  availableOn String // "YYYY-MM-DD"
+  posX        Float?
+  posZ        Float?
+  readAt      DateTime?
+  createdAt   DateTime  @default(now())
+}

@@ -1,0 +1,23 @@
+[
+  {
+    "id": "letter-001",
+    "availableOn": "2026-01-01",
+    "title": "Selamat datang di kamarmu",
+    "body": "(CONTOH — ganti dengan pesanmu sendiri di prisma/letters.json)\n\nIni dunia kecil yang dibuat khusus buat kamu. Geser-geser barangnya, siram tanamannya, elus kucingnya. Tiap hari ada surat baru yang nyumput di sini.",
+    "photoUrl": null
+  },
+  {
+    "id": "letter-002",
+    "availableOn": "2026-01-01",
+    "title": "Surat kedua",
+    "body": "(CONTOH) Tulis puisi, pesan, atau cerita kenangan di sini. Baris baru ditulis dengan \\n.",
+    "photoUrl": null
+  },
+  {
+    "id": "letter-003",
+    "availableOn": "2099-01-01",
+    "title": "Surat terjadwal",
+    "body": "(CONTOH) Surat ini baru muncul pada tanggal availableOn. Untuk foto, taruh file di public/photos lalu isi photoUrl dengan \"/photos/nama-file.jpg\".",
+    "photoUrl": null
+  }
+]

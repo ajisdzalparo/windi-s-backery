@@ -1,0 +1,7 @@
+node_modules
+.next
+.env
+.git
+.claude
+# File sumber aset (sheet asli, model asli) tidak dibutuhkan saat produksi
+assets-src
