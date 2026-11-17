@@ -140,8 +140,8 @@ if __name__ == "__main__":
     slice_sheet("shop-sheet-2.webp", ["chicken", "cow", "bunny", "cat", "dog", "flowers", "lanterns", "rug", "menu_board"], "shop")
     slice_sheet(
         "items-sheet-1.png",
-        ["seed_wheat", "seed_strawberry", "feed", "wheat", "strawberry", "wild_berry", "chamomile", "mushroom", "egg", "milk"]
-        + [None] * 5,  # baris ketiga di sheet ini ekstra, tidak dipakai
+        ["seed_wheat", "seed_strawberry", "feed", "wheat", "strawberry", "wild_berry", "chamomile", "mushroom", "egg", "milk", None, "feed_cow"]
+        + [None] * 3,  # sisa baris ketiga tidak dipakai
         "icons",
     )
     slice_sheet(

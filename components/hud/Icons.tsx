@@ -41,7 +41,8 @@ type ItemLook = { Icon: LucideIcon; color: string; bg: string };
 export const ITEM_ICONS: Record<string, ItemLook> = {
   seed_wheat: { Icon: Bean, color: "#b45309", bg: "#fef3c7" },
   seed_strawberry: { Icon: Sprout, color: "#be123c", bg: "#ffe4e6" },
-  feed: { Icon: Wheat, color: "#4d7c0f", bg: "#ecfccb" },
+  feed: { Icon: Wheat, color: "#b45309", bg: "#fef3c7" },
+  feed_cow: { Icon: Sprout, color: "#4d7c0f", bg: "#ecfccb" },
   wheat: { Icon: Wheat, color: "#ca8a04", bg: "#fef9c3" },
   strawberry: { Icon: Cherry, color: "#e11d48", bg: "#ffe4e6" },
   wild_berry: { Icon: Grape, color: "#4f46e5", bg: "#e0e7ff" },

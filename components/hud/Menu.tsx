@@ -137,14 +137,14 @@ function WoodButton({ icon: Icon, label, onClick, badge, big }: { icon: LucideIc
   return (
     <button
       onClick={onClick}
-      className={`group relative flex w-full items-center gap-2 rounded-2xl border-[3px] border-[#5b3418] bg-gradient-to-b from-[#c98a55] via-[#a86b3c] to-[#8a5530] pr-3 pl-1.5 font-extrabold tracking-wide text-[#fff3dc] uppercase shadow-[inset_0_2px_0_rgba(255,255,255,0.35),0_4px_0_#5b3418,0_8px_14px_rgba(0,0,0,0.25)] [text-shadow:0_2px_0_#5b3418] active:translate-y-0.5 ${big ? "py-2 text-base" : "py-1.5 text-sm"}`}
+      className={`group relative flex w-full items-center gap-2 rounded-2xl border-[3px] border-[#5b3418] bg-linear-to-b from-[#c98a55] via-[#a86b3c] to-[#8a5530] pr-3 pl-1.5 font-extrabold tracking-wide text-[#fff3dc] uppercase shadow-[inset_0_2px_0_rgba(255,255,255,0.35),0_4px_0_#5b3418,0_8px_14px_rgba(0,0,0,0.25)] [text-shadow:0_2px_0_#5b3418] active:translate-y-0.5 ${big ? "py-2 text-base" : "py-1.5 text-sm"}`}
     >
       <span className={`flex shrink-0 items-center justify-center rounded-full border-2 border-[#5b3418] bg-[#fff3dc] text-[#8a5530] shadow-inner ${big ? "h-10 w-10" : "h-8 w-8"}`}>
         <Icon size={big ? 20 : 16} strokeWidth={2.6} />
       </span>
       <span className="flex-1 text-center">{label}</span>
       {!!badge && (
-        <span className="absolute -top-2 -right-2 flex h-5 min-w-5 items-center justify-center rounded-full border-2 border-white bg-rose-500 px-1 text-[11px] text-white [text-shadow:none]">
+        <span className="absolute -top-2 -right-2 flex h-5 min-w-5 items-center justify-center rounded-full border-2 border-white bg-rose-500 px-1 text-[11px] text-white text-shadow-none">
           {badge}
         </span>
       )}
@@ -155,12 +155,12 @@ function WoodButton({ icon: Icon, label, onClick, badge, big }: { icon: LucideIc
 /** Tombol PLAY besar berbentuk roti di atas talenan kayu. */
 function BreadPlay({ label, sub, onClick }: { label: string; sub: string; onClick: () => void }) {
   return (
-    <button onClick={onClick} className="relative mx-auto block w-full max-w-[340px] active:translate-y-1">
+    <button onClick={onClick} className="relative mx-auto block w-full max-w-85 active:translate-y-1">
       {/* talenan */}
-      <span className="absolute inset-x-[-6%] top-[18%] bottom-[-12%] rounded-[2.2rem] border-[3px] border-[#5b3418] bg-gradient-to-b from-[#b07a45] to-[#8a5530] shadow-[0_8px_18px_rgba(0,0,0,0.3)]" />
-      <span className="absolute top-[42%] -right-[9%] h-5 w-9 rounded-full border-[3px] border-[#5b3418] bg-[#a86b3c]" />
+      <span className="absolute inset-x-[-6%] top-[18%] bottom-[-12%] rounded-[2.2rem] border-[3px] border-[#5b3418] bg-linear-to-b from-[#b07a45] to-[#8a5530] shadow-[0_8px_18px_rgba(0,0,0,0.3)]" />
+      <span className="absolute top-[42%] right-[-9%] h-5 w-9 rounded-full border-[3px] border-[#5b3418] bg-[#a86b3c]" />
       {/* roti */}
-      <span className="relative block rounded-[50%/60%] border-[3px] border-[#7a4520] bg-gradient-to-b from-[#f8c47c] via-[#eba352] to-[#c97a33] px-6 pt-3 pb-4 text-center shadow-[inset_0_6px_0_rgba(255,255,255,0.45),inset_0_-6px_0_rgba(122,69,32,0.25)]">
+      <span className="relative block rounded-[50%/60%] border-[3px] border-[#7a4520] bg-linear-to-b from-[#f8c47c] via-[#eba352] to-[#c97a33] px-6 pt-3 pb-4 text-center shadow-[inset_0_6px_0_rgba(255,255,255,0.45),inset_0_-6px_0_rgba(122,69,32,0.25)]">
         <span className="pointer-events-none absolute inset-x-[18%] top-2 flex justify-between">
           {[0, 1, 2, 3].map((i) => (
             <span key={i} className="h-2 w-6 rotate-[-20deg] rounded-full bg-[#fff1d6]/70" />
@@ -275,7 +275,7 @@ export function MainMenu() {
       <ImageOr
         src="/ui/menu-bg.jpg"
         alt=""
-        className="absolute inset-0 h-full w-full object-cover landscape:right-auto landscape:w-auto landscape:max-w-[62%] landscape:[mask-image:linear-gradient(to_right,black_75%,transparent)]"
+        className="absolute inset-0 h-full w-full object-cover landscape:right-auto landscape:w-auto landscape:max-w-[62%] landscape:mask-[linear-gradient(to_right,black_75%,transparent)]"
         fallback={null}
       />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_45%,rgba(120,70,30,0.35)_100%)]" />
@@ -284,7 +284,7 @@ export function MainMenu() {
       {/* Tata letak HP (potret) */}
       <div className="pointer-events-auto absolute inset-0 flex flex-col items-center justify-between gap-6 px-5 pt-[max(1.25rem,env(safe-area-inset-top))] pb-[max(1.25rem,env(safe-area-inset-bottom))] landscape:hidden">
         <div className="pop-in w-full">
-          <Logo className="max-h-[24vh] w-full max-w-[300px]" />
+          <Logo className="max-h-[24vh] w-full max-w-75" />
         </div>
         <div className="pop-in flex w-full max-w-sm flex-col gap-4">
           {playBtn}
@@ -296,9 +296,9 @@ export function MainMenu() {
       <div className="pointer-events-auto absolute inset-0 hidden grid-cols-[1fr_minmax(300px,38%)_1fr] items-center gap-4 px-8 py-6 landscape:grid">
         <div />
         <div className="pop-in flex h-full flex-col items-center justify-center gap-[2.5vh]">
-          <Logo className="max-h-[36vh] w-full max-w-[420px]" />
-          <div className="grid w-full max-w-[420px] grid-cols-2 gap-3">{buttons}</div>
-          <div className="mt-[1vh] w-full max-w-[340px]">{playBtn}</div>
+          <Logo className="max-h-[36vh] w-full max-w-105" />
+          <div className="grid w-full max-w-105 grid-cols-2 gap-3">{buttons}</div>
+          <div className="mt-[1vh] w-full max-w-85">{playBtn}</div>
         </div>
         <div />
       </div>

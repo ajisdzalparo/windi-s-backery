@@ -21,7 +21,8 @@ export const ITEMS: Record<string, Item> = {
   mushroom: { id: "mushroom", name: "Jamur", icon: "🍄", kind: "wild" },
   egg: { id: "egg", name: "Telur", icon: "🥚", kind: "farm" },
   milk: { id: "milk", name: "Susu Segar", icon: "🥛", kind: "farm" },
-  feed: { id: "feed", name: "Pakan Ternak", icon: "🌾", kind: "supply" },
+  feed: { id: "feed", name: "Pakan Ayam", icon: "🌾", kind: "supply" },
+  feed_cow: { id: "feed_cow", name: "Pakan Sapi", icon: "🌿", kind: "supply" },
   bread: { id: "bread", name: "Roti Gandum", icon: "🍞", kind: "product", price: 25, energy: 20 },
   chamomile_tea: { id: "chamomile_tea", name: "Teh Chamomile", icon: "🍵", kind: "product", price: 35, energy: 25 },
   berry_tart: { id: "berry_tart", name: "Tart Beri Liar", icon: "🥧", kind: "product", price: 55, energy: 25 },
@@ -99,7 +100,11 @@ export type CatalogEntry = { id: string; name: string; icon: string; price: numb
 export const SEED_SHOP: CatalogEntry[] = [
   { id: "seed_wheat", name: "Benih Gandum", icon: "🌾", price: 10, note: "Panen 3 hari" },
   { id: "seed_strawberry", name: "Benih Stroberi", icon: "🍓", price: 20, note: "Panen 4 hari" },
-  { id: "feed", name: "Pakan Ternak", icon: "🌾", price: 5, note: "Untuk ayam & sapi · 1 pakan = 1 hewan/hari" },
+];
+
+export const FEED_SHOP: CatalogEntry[] = [
+  { id: "feed", name: "Pakan Ayam", icon: "🌾", price: 5, note: "Biji-bijian untuk ayam · 1 pakan/ayam/hari" },
+  { id: "feed_cow", name: "Pakan Sapi", icon: "🌿", price: 10, note: "Rumput jerami untuk sapi · 1 pakan/sapi/hari" },
 ];
 
 export const DECOR_SHOP: CatalogEntry[] = [
@@ -258,9 +263,9 @@ export const UPGRADE_SHOP: ShopEntry[] = [
 ];
 
 export type AnimalKind = "chicken" | "cow";
-export const ANIMAL_SHOP: (ShopEntry & { kind: AnimalKind; max: number; product: string })[] = [
-  { id: "chicken", kind: "chicken", name: "Ayam", icon: "🐔", price: 80, note: "Bertelur tiap hari kalau diberi makan", requires: "coop", requiresName: "Kandang Ayam", max: 4, product: "egg" },
-  { id: "cow", kind: "cow", name: "Sapi", icon: "🐄", price: 300, note: "Susu segar tiap hari kalau diberi makan", requires: "barn", requiresName: "Kandang Sapi", max: 2, product: "milk" },
+export const ANIMAL_SHOP: (ShopEntry & { kind: AnimalKind; max: number; product: string; feed: string })[] = [
+  { id: "chicken", kind: "chicken", name: "Ayam", icon: "🐔", price: 80, note: "Bertelur tiap hari kalau diberi Pakan Ayam", requires: "coop", requiresName: "Kandang Ayam", max: 4, product: "egg", feed: "feed" },
+  { id: "cow", kind: "cow", name: "Sapi", icon: "🐄", price: 300, note: "Susu segar tiap hari kalau diberi Pakan Sapi", requires: "barn", requiresName: "Kandang Sapi", max: 2, product: "milk", feed: "feed_cow" },
 ];
 export const animalInfo = (kind: AnimalKind) => ANIMAL_SHOP.find((a) => a.kind === kind)!;
 export const ANIMAL_NAMES: Record<AnimalKind, string[]> = {

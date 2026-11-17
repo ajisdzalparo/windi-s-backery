@@ -26,7 +26,7 @@ import {
   Wrench,
 } from "lucide-react";
 import { ShopIcon, stripEmoji } from "./Icons";
-import { ANIMAL_SHOP, DECOR_SHOP, LAND_SHOP, PET_SHOP, RECIPES, SEED_SHOP, UPGRADE_SHOP, bakeEnergy, bakeSeconds, bakeYield, itemOf } from "@/lib/data";
+import { ANIMAL_SHOP, DECOR_SHOP, FEED_SHOP, LAND_SHOP, PET_SHOP, RECIPES, SEED_SHOP, UPGRADE_SHOP, bakeEnergy, bakeSeconds, bakeYield, itemOf } from "@/lib/data";
 import { trackTitle } from "@/lib/music";
 import { useGame, type BuyKind, type CatalogTab } from "@/lib/store";
 import { ItemIcon, Portrait } from "./Art";
@@ -46,8 +46,8 @@ export function BagPanel() {
   const inv = useGame((s) => s.save.inventory);
   const entries = Object.entries(inv).sort(([a], [b]) => a.localeCompare(b));
   const groups: [string, string[]][] = [
-    ["Benih", ["seed"]],
-    ["Bahan", ["crop", "wild"]],
+    ["Benih & Pakan", ["seed", "supply"]],
+    ["Bahan & Hasil Ternak", ["crop", "wild", "farm"]],
     ["Kue & minuman", ["product"]],
   ];
   return (
@@ -331,12 +331,12 @@ export function CatalogPanel() {
 
       <ul className="flex flex-col gap-2">
         {tab === "seed" &&
-          SEED_SHOP.map((e) => row(e, "seed", { extra: <p className="text-[11px] text-stone-400">Punya {save.inventory[e.id] ?? 0}</p> }))}
+          [...SEED_SHOP, ...FEED_SHOP].map((e) => row(e, "seed", { extra: <p className="text-[11px] text-stone-400">Punya {save.inventory[e.id] ?? 0}</p> }))}
 
-        {/* Pakan ternak juga dijual di tab Ternak supaya gampang ditemukan */}
+        {/* Pakan ayam & sapi juga dijual di tab Ternak supaya gampang ditemukan */}
         {tab === "animal" &&
-          SEED_SHOP.filter((e) => e.id === "feed").map((e) =>
-            row(e, "seed", { extra: <p className="text-[11px] text-stone-400">Punya {save.inventory.feed ?? 0} pakan</p> }),
+          FEED_SHOP.map((e) =>
+            row(e, "seed", { extra: <p className="text-[11px] text-stone-400">Punya {save.inventory[e.id] ?? 0} pakan</p> }),
           )}
         {tab === "animal" &&
           ANIMAL_SHOP.map((e) => {
@@ -349,8 +349,8 @@ export function CatalogPanel() {
           })}
         {tab === "animal" && (
           <li className="rounded-2xl bg-sky-50 p-3 text-xs text-sky-700">
-            Cara beternak: beli lahan & kandang di tab Lahan, beli hewan di sini, beri <b>Pakan Ternak</b> (dijual di atas) tiap hari, elus biar
-            sayang, lalu ambil telur/susu besok paginya.
+            Cara beternak: beli lahan & kandang di tab Lahan, beli hewan di sini, beri <b>Pakan Ayam</b> atau <b>Pakan Sapi</b> (dijual di atas)
+            sesuai hewannya tiap hari, elus biar sayang, lalu ambil telur/susu besok paginya.
           </li>
         )}
 

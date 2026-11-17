@@ -22,6 +22,7 @@ import {
   DAY_START,
   DECOR_SHOP,
   ENERGY,
+  FEED_SHOP,
   GAME_MINUTES_PER_SECOND,
   OUTFITS,
   RECIPES,
@@ -521,12 +522,13 @@ export const useGame = create<Store>((set, get) => {
             return s.say(`+${n} ${itemOf(info.product).icon} ${itemOf(info.product).name} dari ${a.name}`);
           }
           if (!a.fed) {
-            if ((s.save.inventory.feed ?? 0) < 1) return s.say("Pakan habis. Beli Pakan Ternak di Toko Ajis");
+            const feedItem = itemOf(info.feed);
+            if ((s.save.inventory[info.feed] ?? 0) < 1) return s.say(`${feedItem.name} habis. Beli di Toko Ajis`);
             if (!spend(ENERGY.feed)) return;
-            patch((sv) => ({ inventory: add(sv.inventory, "feed", -1), animals: update(() => ({ fed: true })) }));
+            patch((sv) => ({ inventory: add(sv.inventory, info.feed, -1), animals: update(() => ({ fed: true })) }));
             playSfx("plant");
             get().track("feed_animal");
-            return s.say(`${a.name} makan dengan lahap 😋`);
+            return s.say(`${a.name} makan ${feedItem.name.toLowerCase()} dengan lahap 😋`);
           }
           if (!a.petted) {
             patch(() => ({ animals: update(() => ({ petted: true })) }));
@@ -639,7 +641,7 @@ export const useGame = create<Store>((set, get) => {
       const outfit = OUTFITS.find((x) => x.id === id);
       const entry: { id: string; name: string; price: number; requires?: string; requiresName?: string } | undefined =
         kind === "seed"
-          ? SEED_SHOP.find((x) => x.id === id)
+          ? [...SEED_SHOP, ...FEED_SHOP].find((x) => x.id === id)
           : kind === "decor"
             ? DECOR_SHOP.find((x) => x.id === id)
             : kind === "land"
