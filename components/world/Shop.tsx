@@ -130,9 +130,37 @@ function Oven() {
   );
 }
 
+function Fridge() {
+  return (
+    <group position={[SPOTS.fridge[0], 0, SPOTS.fridge[1]]}>
+      {/* Kaki kulkas */}
+      {[-0.36, 0.36].flatMap((x) =>
+        [-0.3, 0.3].map((z) => <Cyl key={`${x}${z}`} p={[x, 0.05, z]} rt={0.05} rb={0.04} h={0.1} c="#57534e" seg={8} />),
+      )}
+      {/* Bodi utama pastel mint (sesuai ikon katalog) */}
+      <Box p={[0, 1.02, 0]} s={[0.96, 1.9, 0.82]} c="#a7f3d0" />
+      <Box p={[0, 1.98, 0]} s={[0.92, 0.04, 0.78]} c="#d1fae5" />
+      {/* Pintu freezer atas */}
+      <Box p={[0, 1.56, 0.42]} s={[0.9, 0.68, 0.05]} c="#bbf7d0" />
+      {/* Celah pemisah pintu */}
+      <Box p={[0, 1.19, 0.425]} s={[0.91, 0.025, 0.05]} c="#065f46" />
+      {/* Pintu bawah */}
+      <Box p={[0, 0.63, 0.42]} s={[0.9, 1.08, 0.05]} c="#bbf7d0" />
+      {/* Gagang pintu silver */}
+      <Box p={[-0.26, 1.34, 0.465]} s={[0.24, 0.045, 0.05]} c="#f5f5f4" />
+      <Box p={[-0.26, 1.02, 0.465]} s={[0.24, 0.045, 0.05]} c="#f5f5f4" />
+      {/* Magnet hiasan kecil di pintu kulkas */}
+      <Ball p={[0.22, 1.62, 0.45]} rad={0.045} c="#fb7185" />
+      <Ball p={[0.14, 1.5, 0.45]} rad={0.04} c="#facc15" />
+    </group>
+  );
+}
+
 function Kitchen() {
+  const hasFridge = useGame((s) => s.save.upgrades.includes("fridge"));
   return (
     <>
+      {hasFridge && <Fridge />}
       <Oven />
       {/* Meja kerja: tepung, adonan, rolling pin */}
       <group position={[2.1, 0, -13.35]}>
@@ -255,6 +283,7 @@ function Decorations() {
 
 export function Shop() {
   const outside = useRef<Group>(null!);
+  const hasFridge = useGame((s) => s.save.upgrades.includes("fridge"));
   useFrame(() => {
     // Saat Windi di dalam toko, atap dan dinding depan disembunyikan supaya isi toko terlihat.
     outside.current.visible = !isInside();
@@ -316,6 +345,7 @@ export function Shop() {
         {/* Konter + etalase, dengan celah di kanan (x 3.4–5.85) untuk masuk ke dapur */}
         <CuboidCollider args={[4.62, 0.5, 0.4]} position={[-1.23, 0.5, -8.2]} />
         <CuboidCollider args={[0.7, 0.8, 0.45]} position={[SPOTS.oven[0], 0.8, SPOTS.oven[1]]} />
+        {hasFridge && <CuboidCollider args={[0.48, 1.0, 0.42]} position={[SPOTS.fridge[0], 1.0, SPOTS.fridge[1]]} />}
         <CuboidCollider args={[0.9, 0.45, 0.4]} position={[2.1, 0.45, -13.35]} />
         <CuboidCollider args={[0.85, 0.4, 1.25]} position={[SPOTS.bed[0], 0.4, SPOTS.bed[1]]} />
         <CuboidCollider args={[0.3, 0.3, 0.25]} position={[-2.9, 0.3, -13.35]} />

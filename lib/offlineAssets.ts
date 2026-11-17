@@ -8,7 +8,6 @@ const SFX = ["plant", "harvest", "coins", "door", "click"];
 export function offlineAssetUrls(): string[] {
   const shopIds = [...LAND_SHOP, ...UPGRADE_SHOP, ...ANIMAL_SHOP, ...PET_SHOP, ...DECOR_SHOP].map((e) => e.id);
   return [
-    "/",
     "/manifest.webmanifest",
     ...Object.keys(ITEMS).map((id) => `/icons/${id}.webp`),
     ...OUTFITS.map((o) => `/outfits/${o.id}.webp`),
@@ -23,7 +22,7 @@ export function offlineAssetUrls(): string[] {
   ];
 }
 
-export const ASSET_CACHE = "windi-assets-v1";
+export const ASSET_CACHE = "windi-assets-v2";
 
 /** Simpan aset ke cache satu per satu (yang gagal dilewati, tidak menggagalkan yang lain). */
 export async function precacheAssets() {

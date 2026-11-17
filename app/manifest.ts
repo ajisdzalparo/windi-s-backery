@@ -7,7 +7,7 @@ export default function manifest(): MetadataRoute.Manifest {
     short_name: "Sweet Bakery",
     description: "Toko kue dan kota kecil yang nyaman, khusus buat Windi.",
     start_url: "/",
-    display: "standalone",
+    display: "fullscreen",
     orientation: "any",
     background_color: "#f3dfc2",
     theme_color: "#8a5530",

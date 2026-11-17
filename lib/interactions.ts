@@ -16,6 +16,10 @@ function candidates(save: SaveData, letters: LetterItem[]): Candidate[] {
     { key: "ajis", label: "Belanja", icon: "🛒", x: AJIS_BENCH.pos[0] - 1.1, z: AJIS_BENCH.pos[1], r: 1.8 },
   ];
 
+  if (save.upgrades.includes("fridge")) {
+    list.push({ key: "oven", label: "Kulkas & Dapur", icon: "🧊", x: SPOTS.fridge[0], z: SPOTS.fridge[1], r: 1.6 });
+  }
+
   BENCHES.forEach((b, i) =>
     list.push({ key: `bench:${i}`, label: "Duduk", icon: "🪑", x: b.pos[0], z: b.pos[1], r: 1.5 }),
   );

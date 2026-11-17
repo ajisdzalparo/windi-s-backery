@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Cake,
   CakeSlice,
@@ -9,6 +9,7 @@ import {
   Coins,
   Cookie,
   Croissant,
+  Download,
   GraduationCap,
   Heart,
   Info,
@@ -208,6 +209,53 @@ function Frame() {
   );
 }
 
+interface BeforeInstallPromptEvent extends Event {
+  prompt: () => Promise<void>;
+  userChoice: Promise<{ outcome: "accepted" | "dismissed" }>;
+}
+
+let deferredInstallPrompt: BeforeInstallPromptEvent | null = null;
+if (typeof window !== "undefined") {
+  window.addEventListener("beforeinstallprompt", (e) => {
+    e.preventDefault();
+    deferredInstallPrompt = e as BeforeInstallPromptEvent;
+  });
+}
+
+function isStandalonePwa(): boolean {
+  if (typeof window === "undefined") return false;
+  return (
+    window.matchMedia("(display-mode: fullscreen)").matches ||
+    window.matchMedia("(display-mode: standalone)").matches ||
+    (navigator as Navigator & { standalone?: boolean }).standalone === true
+  );
+}
+
+function InstallGuide({ onClose }: { onClose: () => void }) {
+  return (
+    <Popup onClose={onClose}>
+      <div>
+        <Download size={40} className="mx-auto mb-2 text-[#a86b3c]" />
+        <p className="mb-2 text-base font-extrabold text-[#5b3418]">Pasang Aplikasi di HP</p>
+        <p className="mb-3 text-sm leading-relaxed text-[#5b3418]">
+          Supaya bisa dimainkan <b>layar penuh (fullscreen)</b> seperti game asli dan tetap jalan walau tanpa sinyal:
+        </p>
+        <div className="mb-4 rounded-2xl bg-[#fff3dc] p-3 text-left text-xs leading-relaxed text-[#5b3418]">
+          <p className="mb-1.5">
+            <b>📱 iPhone / iPad (Safari):</b> Ketuk tombol <b>Bagikan (Share)</b> di bawah layar, lalu pilih <b>Tambahkan ke Layar Utama (Add to Home Screen)</b>.
+          </p>
+          <p>
+            <b>🤖 Android (Chrome):</b> Ketuk menu <b>⋮</b> di pojok kanan atas browser, lalu pilih <b>Instal aplikasi</b> atau <b>Tambahkan ke layar utama</b>.
+          </p>
+        </div>
+        <button className={`${primaryBtn} w-full`} onClick={onClose}>
+          Mengerti
+        </button>
+      </div>
+    </Popup>
+  );
+}
+
 /** Menu utama bergaya ilustrasi toko roti: tata letak lebar di laptop/landscape, bertumpuk di HP. */
 export function MainMenu() {
   const day = useGame((s) => s.save.inGameDay);
@@ -217,7 +265,42 @@ export function MainMenu() {
   const [muted, setMutedState] = useState(isMuted);
   const [about, setAbout] = useState(false);
   const [intro, setIntro] = useState(false);
+  const [installGuide, setInstallGuide] = useState(false);
+  const [installed, setInstalled] = useState(isStandalonePwa);
+  const [, setPromptTick] = useState(0);
   const { setMenu, setPanel, startTutorial } = useGame.getState();
+
+  useEffect(() => {
+    setInstalled(isStandalonePwa());
+    const onPrompt = (e: Event) => {
+      e.preventDefault();
+      deferredInstallPrompt = e as BeforeInstallPromptEvent;
+      setPromptTick((n) => n + 1);
+    };
+    const onInstalled = () => {
+      deferredInstallPrompt = null;
+      setInstalled(true);
+    };
+    window.addEventListener("beforeinstallprompt", onPrompt);
+    window.addEventListener("appinstalled", onInstalled);
+    return () => {
+      window.removeEventListener("beforeinstallprompt", onPrompt);
+      window.removeEventListener("appinstalled", onInstalled);
+    };
+  }, []);
+
+  const installPwa = async () => {
+    if (deferredInstallPrompt) {
+      await deferredInstallPrompt.prompt();
+      const choice = await deferredInstallPrompt.userChoice.catch(() => null);
+      if (choice?.outcome === "accepted") {
+        deferredInstallPrompt = null;
+        setInstalled(true);
+      }
+    } else {
+      setInstallGuide(true);
+    }
+  };
 
   const toggleSound = () => {
     const next = !muted;
@@ -229,13 +312,15 @@ export function MainMenu() {
 
   // Pemain baru menonton intro dulu, lalu tutorial dimulai otomatis.
   const enterFullscreen = () => {
-    if (typeof document === "undefined" || document.fullscreenElement) return;
+    if (typeof document === "undefined") return;
+    const doc = document as Document & { webkitFullscreenElement?: Element };
+    if (doc.fullscreenElement || doc.webkitFullscreenElement) return;
     const el = document.documentElement as HTMLElement & {
       webkitRequestFullscreen?: () => Promise<void> | void;
     };
     try {
       if (el.requestFullscreen) {
-        void el.requestFullscreen({ navigationUI: "hide" }).catch(() => undefined);
+        void el.requestFullscreen().catch(() => undefined);
       } else if (el.webkitRequestFullscreen) {
         el.webkitRequestFullscreen();
       }
@@ -264,6 +349,11 @@ export function MainMenu() {
       <WoodButton icon={Clapperboard} label="Intro" onClick={() => setIntro(true)} />
       <WoodButton icon={muted ? VolumeX : Volume2} label={muted ? "Suara mati" : "Suara"} onClick={toggleSound} />
       <WoodButton icon={Info} label="Tentang" onClick={() => setAbout(true)} />
+      {!installed && (
+        <div className="col-span-2">
+          <WoodButton icon={Download} label="Pasang Aplikasi (Layar Penuh)" onClick={() => void installPwa()} />
+        </div>
+      )}
     </>
   );
   const playBtn = <BreadPlay label={fresh ? "MULAI" : "LANJUT"} sub={`Hari ${day} · ${coins} koin`} onClick={play} />;
@@ -304,6 +394,7 @@ export function MainMenu() {
       </div>
 
       {about && <About onClose={() => setAbout(false)} />}
+      {installGuide && <InstallGuide onClose={() => setInstallGuide(false)} />}
       {intro && (
         <IntroCutscene
           onDone={() => {

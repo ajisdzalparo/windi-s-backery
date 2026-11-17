@@ -129,6 +129,7 @@ export const MAP_LIMIT = 26;
 export const SHOP = { minX: -6, maxX: 6, minZ: -14, maxZ: -4, doorHalf: 1.3 };
 export const SPOTS = {
   bed: [-4.4, -12] as [number, number],
+  fridge: [0.55, -13.2] as [number, number],
   oven: [4.3, -12.9] as [number, number],
   case: [0, -8.6] as [number, number], // Windi melayani dari sisi utara etalase
   counterCustomer: [0, -6.6] as [number, number],

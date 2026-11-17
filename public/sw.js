@@ -2,8 +2,8 @@
 // - Halaman: coba jaringan dulu, kalau gagal pakai salinan tersimpan.
 // - File statis (kode, gambar, tekstur, musik, model 3D): pakai cache dulu, lalu jaringan.
 // - /api/*: selalu ke jaringan (game sendiri menangani mode offline lewat simpanan di HP).
-const ASSET_CACHE = "windi-assets-v1";
-const PAGE_CACHE = "windi-pages-v1";
+const ASSET_CACHE = "windi-assets-v2";
+const PAGE_CACHE = "windi-pages-v2";
 
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(PAGE_CACHE).then((c) => c.add("/").catch(() => undefined)));
