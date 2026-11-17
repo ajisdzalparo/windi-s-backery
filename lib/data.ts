@@ -99,7 +99,7 @@ export type CatalogEntry = { id: string; name: string; icon: string; price: numb
 export const SEED_SHOP: CatalogEntry[] = [
   { id: "seed_wheat", name: "Benih Gandum", icon: "🌾", price: 10, note: "Panen 3 hari" },
   { id: "seed_strawberry", name: "Benih Stroberi", icon: "🍓", price: 20, note: "Panen 4 hari" },
-  { id: "feed", name: "Pakan Ternak", icon: "🌾", price: 5, note: "1 pakan = makan 1 hewan" },
+  { id: "feed", name: "Pakan Ternak", icon: "🌾", price: 5, note: "Untuk ayam & sapi · 1 pakan = 1 hewan/hari" },
 ];
 
 export const DECOR_SHOP: CatalogEntry[] = [

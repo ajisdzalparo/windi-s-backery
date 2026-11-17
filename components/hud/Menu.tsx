@@ -228,12 +228,39 @@ export function MainMenu() {
   };
 
   // Pemain baru menonton intro dulu, lalu tutorial dimulai otomatis.
-  const play = () => (fresh ? setIntro(true) : setMenu(false));
+  const enterFullscreen = () => {
+    if (typeof document === "undefined" || document.fullscreenElement) return;
+    const el = document.documentElement as HTMLElement & {
+      webkitRequestFullscreen?: () => Promise<void> | void;
+    };
+    try {
+      if (el.requestFullscreen) {
+        void el.requestFullscreen({ navigationUI: "hide" }).catch(() => undefined);
+      } else if (el.webkitRequestFullscreen) {
+        el.webkitRequestFullscreen();
+      }
+    } catch {
+      // Abaikan jika browser menolak fullscreen
+    }
+  };
+
+  const play = () => {
+    enterFullscreen();
+    if (fresh) setIntro(true);
+    else setMenu(false);
+  };
   const buttons = (
     <>
       <WoodButton icon={Shirt} label="Lemari" onClick={() => setPanel("boutique")} />
       <WoodButton icon={Mail} label="Surat" onClick={() => setPanel("archive")} badge={unread} />
-      <WoodButton icon={GraduationCap} label="Tutorial" onClick={startTutorial} />
+      <WoodButton
+        icon={GraduationCap}
+        label="Tutorial"
+        onClick={() => {
+          enterFullscreen();
+          startTutorial();
+        }}
+      />
       <WoodButton icon={Clapperboard} label="Intro" onClick={() => setIntro(true)} />
       <WoodButton icon={muted ? VolumeX : Volume2} label={muted ? "Suara mati" : "Suara"} onClick={toggleSound} />
       <WoodButton icon={Info} label="Tentang" onClick={() => setAbout(true)} />
