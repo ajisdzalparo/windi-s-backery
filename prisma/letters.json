@@ -1,23 +1,212 @@
 [
   {
     "id": "letter-001",
-    "availableOn": "2026-01-01",
-    "title": "Selamat datang di kamarmu",
-    "body": "(CONTOH — ganti dengan pesanmu sendiri di prisma/letters.json)\n\nIni dunia kecil yang dibuat khusus buat kamu. Geser-geser barangnya, siram tanamannya, elus kucingnya. Tiap hari ada surat baru yang nyumput di sini.",
+    "availableOn": "2026-11-17",
+    "title": "Selamat datang di tokomu",
+    "body": "Ini dunia kecil yang aku bikin khusus buat kamu. Ada toko kue, kebun, kota kecil, dan aku yang nunggu di Toko Ajis.\n\nSetiap hari bakal ada surat baru yang nyumput di kota. Cari kilauan pink ya!",
     "photoUrl": null
   },
   {
     "id": "letter-002",
-    "availableOn": "2026-01-01",
+    "availableOn": "2026-11-18",
     "title": "Surat kedua",
-    "body": "(CONTOH) Tulis puisi, pesan, atau cerita kenangan di sini. Baris baru ditulis dengan \\n.",
+    "body": "Kamu tahu nggak, bikin game ini tuh caraku bilang: aku pengen kamu punya tempat buat istirahat, kapan pun kamu capek.\n\nSantai aja mainnya. Nggak ada kalah, nggak ada buru-buru.",
     "photoUrl": null
   },
   {
     "id": "letter-003",
-    "availableOn": "2099-01-01",
-    "title": "Surat terjadwal",
-    "body": "(CONTOH) Surat ini baru muncul pada tanggal availableOn. Untuk foto, taruh file di public/photos lalu isi photoUrl dengan \"/photos/nama-file.jpg\".",
+    "availableOn": "2026-11-19",
+    "title": "Hari ketiga",
+    "body": "Semoga hari ini kerjaanmu lancar. Kalau ada yang bikin kesel, cerita ke aku ya.\n\nAku selalu mau dengerin, bahkan cerita yang paling kecil sekalipun.",
+    "photoUrl": null
+  },
+  {
+    "id": "letter-004",
+    "availableOn": "2026-11-20",
+    "title": "Tentang senyummu",
+    "body": "Ada satu hal yang selalu bikin hariku jadi lebih baik: lihat kamu senyum.\n\nJadi hari ini, senyum yang banyak ya. Buat aku.",
+    "photoUrl": null
+  },
+  {
+    "id": "letter-005",
+    "availableOn": "2026-11-21",
+    "title": "Jangan lupa makan",
+    "body": "Aku tahu kamu suka lupa makan kalau lagi sibuk. Jadi ini pengingat resmi dari Toko Ajis:\n\nmakan dulu, minum air putih, baru lanjut lagi. Oke?",
+    "photoUrl": null
+  },
+  {
+    "id": "letter-006",
+    "availableOn": "2026-11-22",
+    "title": "Kue paling enak",
+    "body": "Kalau aku boleh milih satu kue dari tokomu, aku pilih yang kamu bikin sambil senyum.\n\nRasanya pasti beda. Lebih manis.",
+    "photoUrl": null
+  },
+  {
+    "id": "letter-007",
+    "availableOn": "2026-11-23",
+    "title": "Satu minggu",
+    "body": "Udah seminggu kamu jalan-jalan di kota kecil ini. Makasih udah mampir tiap hari.\n\nAku seneng banget tiap kali tahu kamu buka game ini.",
+    "photoUrl": null
+  },
+  {
+    "id": "letter-008",
+    "availableOn": "2026-11-24",
+    "title": "Hari yang berat?",
+    "body": "Kalau hari ini terasa berat, nggak apa-apa. Kamu nggak harus selalu kuat.\n\nIstirahat dulu di bangku taman, terus besok kita coba lagi bareng-bareng.",
+    "photoUrl": null
+  },
+  {
+    "id": "letter-009",
+    "availableOn": "2026-11-25",
+    "title": "Hal kecil",
+    "body": "Aku suka hal-hal kecil tentang kamu. Cara kamu ketawa, cara kamu cerita, cara kamu peduli sama orang lain.\n\nHal-hal kecil itu yang bikin kamu besar di hatiku.",
+    "photoUrl": null
+  },
+  {
+    "id": "letter-010",
+    "availableOn": "2026-11-26",
+    "title": "Mimpi kita",
+    "body": "Suatu hari nanti, semoga kita bisa punya toko kue beneran. Kamu yang bikin kue, aku yang jaga kasir sambil curi-curi cicip.\n\nSampai hari itu datang, kita latihan di sini dulu ya.",
+    "photoUrl": null
+  },
+  {
+    "id": "letter-011",
+    "availableOn": "2026-11-27",
+    "title": "Terima kasih",
+    "body": "Terima kasih udah sabar sama aku. Aku tahu aku nggak sempurna.\n\nTapi buat kamu, aku mau terus belajar jadi lebih baik.",
+    "photoUrl": null
+  },
+  {
+    "id": "letter-012",
+    "availableOn": "2026-11-28",
+    "title": "Hujan",
+    "body": "Kalau di luar lagi hujan, bayangin aja kita lagi di toko kue, minum teh chamomile hangat sambil dengerin hujan.\n\nCozy, kan?",
+    "photoUrl": null
+  },
+  {
+    "id": "letter-013",
+    "availableOn": "2026-11-29",
+    "title": "Kamu hebat",
+    "body": "Aku mau kamu tahu: kamu itu hebat. Kerja keras, perhatian, dan selalu berusaha.\n\nKadang kamu lupa itu, jadi aku yang ingetin.",
+    "photoUrl": null
+  },
+  {
+    "id": "letter-014",
+    "availableOn": "2026-11-30",
+    "title": "Dua minggu",
+    "body": "Dua minggu! Tokomu pasti udah makin rame ya.\n\nAku bangga sama kamu, di game maupun di dunia nyata.",
+    "photoUrl": null
+  },
+  {
+    "id": "letter-015",
+    "availableOn": "2026-12-01",
+    "title": "Pagi yang cerah",
+    "body": "Selamat pagi, Bu Bos toko kue!\n\nSemoga hari ini penuh hal-hal manis, kayak kue stroberi yang kamu jual.",
+    "photoUrl": null
+  },
+  {
+    "id": "letter-016",
+    "availableOn": "2026-12-02",
+    "title": "Rindu",
+    "body": "Kalau lagi kangen tapi belum bisa ketemu, buka game ini aja. Aku ada di Toko Ajis, nunggu kamu mampir.\n\nAnggap aja ini pelukan kecil dari jauh.",
+    "photoUrl": null
+  },
+  {
+    "id": "letter-017",
+    "availableOn": "2026-12-03",
+    "title": "Resep rahasia",
+    "body": "Resep rahasia hubungan kita: sabar satu cangkir, ketawa dua sendok, dan kangen secukupnya.\n\nAduk pelan-pelan, panggang dengan hati.",
+    "photoUrl": null
+  },
+  {
+    "id": "letter-018",
+    "availableOn": "2026-12-04",
+    "title": "Bintang",
+    "body": "Kalau malam ini langitnya cerah, coba lihat bintang.\n\nAku juga lagi lihat langit yang sama sambil mikirin kamu.",
+    "photoUrl": null
+  },
+  {
+    "id": "letter-019",
+    "availableOn": "2026-12-05",
+    "title": "Capek itu wajar",
+    "body": "Capek itu wajar. Kamu manusia, bukan mesin.\n\nTidur yang cukup ya malam ini. Energi pulih penuh, kayak di game.",
+    "photoUrl": null
+  },
+  {
+    "id": "letter-020",
+    "availableOn": "2026-12-06",
+    "title": "Kenangan",
+    "body": "Aku sering ingat momen-momen kecil kita, yang kelihatannya biasa tapi ternyata paling berkesan.\n\nAyo bikin lebih banyak lagi.",
+    "photoUrl": null
+  },
+  {
+    "id": "letter-021",
+    "availableOn": "2026-12-07",
+    "title": "Tiga minggu",
+    "body": "Tiga minggu kamu main di sini. Kamu udah beli apa aja di Toko Ajis?\n\nAku harap ada baju yang kamu suka.",
+    "photoUrl": null
+  },
+  {
+    "id": "letter-022",
+    "availableOn": "2026-12-08",
+    "title": "Doa kecil",
+    "body": "Hari ini aku berdoa semoga kamu sehat, bahagia, dan semua urusanmu dimudahkan.\n\nAmin paling serius dariku.",
+    "photoUrl": null
+  },
+  {
+    "id": "letter-023",
+    "availableOn": "2026-12-09",
+    "title": "Masa depan",
+    "body": "Aku nggak tahu masa depan bakal kayak gimana. Tapi aku tahu aku mau kamu ada di dalamnya.\n\nPelan-pelan kita jalanin bareng ya.",
+    "photoUrl": null
+  },
+  {
+    "id": "letter-024",
+    "availableOn": "2026-12-10",
+    "title": "Lucu",
+    "body": "Kamu tahu nggak kenapa roti nggak pernah sedih?\n\nKarena dia selalu dikelilingi yang manis-manis. Kayak kamu.",
+    "photoUrl": null
+  },
+  {
+    "id": "letter-025",
+    "availableOn": "2026-12-11",
+    "title": "Bangga",
+    "body": "Aku bangga sama semua hal yang udah kamu lewati selama ini.\n\nKamu jauh lebih kuat dari yang kamu kira.",
+    "photoUrl": null
+  },
+  {
+    "id": "letter-026",
+    "availableOn": "2026-12-12",
+    "title": "Teh sore",
+    "body": "Sore ini coba istirahat sebentar, bikin teh, duduk tenang.\n\nKamu pantas dapat waktu buat diri sendiri.",
+    "photoUrl": null
+  },
+  {
+    "id": "letter-027",
+    "availableOn": "2026-12-13",
+    "title": "Hampir sebulan",
+    "body": "Hampir sebulan surat-surat ini nemenin kamu. Semoga tiap surat bikin harimu sedikit lebih hangat.\n\nNanti aku tulis surat-surat baru lagi ya.",
+    "photoUrl": null
+  },
+  {
+    "id": "letter-028",
+    "availableOn": "2026-12-14",
+    "title": "Apa adanya",
+    "body": "Aku sayang kamu apa adanya. Waktu kamu semangat, waktu kamu capek, waktu kamu ngambek juga.\n\nSemua versi kamu.",
+    "photoUrl": null
+  },
+  {
+    "id": "letter-029",
+    "availableOn": "2026-12-15",
+    "title": "Besok",
+    "body": "Apa pun yang terjadi hari ini, besok selalu ada kesempatan baru.\n\nKayak di game: tidur, bangun, hari baru, mulai lagi.",
+    "photoUrl": null
+  },
+  {
+    "id": "letter-030",
+    "availableOn": "2026-12-16",
+    "title": "Satu bulan",
+    "body": "Satu bulan penuh! Terima kasih udah jalan-jalan di kota kecil kita setiap hari.\n\nSurat-surat baru akan terus datang. Aku sayang kamu. — Ajis",
     "photoUrl": null
   }
 ]

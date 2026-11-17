@@ -333,6 +333,11 @@ export function CatalogPanel() {
         {tab === "seed" &&
           SEED_SHOP.map((e) => row(e, "seed", { extra: <p className="text-[11px] text-stone-400">Punya {save.inventory[e.id] ?? 0}</p> }))}
 
+        {/* Pakan ternak juga dijual di tab Ternak supaya gampang ditemukan */}
+        {tab === "animal" &&
+          SEED_SHOP.filter((e) => e.id === "feed").map((e) =>
+            row(e, "seed", { extra: <p className="text-[11px] text-stone-400">Punya {save.inventory.feed ?? 0} pakan</p> }),
+          )}
         {tab === "animal" &&
           ANIMAL_SHOP.map((e) => {
             const count = save.animals.filter((a) => a.kind === e.kind).length;
@@ -344,7 +349,7 @@ export function CatalogPanel() {
           })}
         {tab === "animal" && (
           <li className="rounded-2xl bg-sky-50 p-3 text-xs text-sky-700">
-            Cara beternak: beli lahan & kandang di tab Lahan, beli hewan di sini, beri <b>Pakan Ternak</b> (tab Benih) tiap hari, elus biar
+            Cara beternak: beli lahan & kandang di tab Lahan, beli hewan di sini, beri <b>Pakan Ternak</b> (dijual di atas) tiap hari, elus biar
             sayang, lalu ambil telur/susu besok paginya.
           </li>
         )}

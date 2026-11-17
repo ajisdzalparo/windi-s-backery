@@ -149,7 +149,8 @@ export const STORY: Quest[] = [
   {
     id: "s11",
     title: "Surat-Surat Kecil",
-    desc: "Ada yang rajin menyelipkan surat di kota… Kumpulkan dan baca.",
+    desc: "Ada yang rajin menyelipkan surat di kota… Kumpulkan dan baca. Satu surat baru muncul setiap hari (waktu nyata).",
+    hint: "Cari kilauan pink di kota; lihat jumlahnya di menu Surat",
     objectives: [{ event: "read_letter", target: 3, label: "Baca surat tersembunyi" }],
     reward: { coins: 60 },
   },
